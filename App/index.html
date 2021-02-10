@@ -8,10 +8,18 @@
 </head>
 <body>
 	<h1>Amazon Example Scraper</h1>
+
+	<p>
+		Leaving the input blank will result in the robot using a default value of 50. Set the value to 0 to scrape all items.
+		Amazon's page lists 10's of thousands of items, however, will only allow the user to scroll through 400 pages. This means the full scrape
+		will have 9600 items. The robot will output the scraped data to output.tsv on the user's desktop. Because of the way amazon's page loads
+		I had to add a 2 second wait for each page, which means the full scrape can take more than 20 minutes to run.
+	</p>
+
 	<form id="robot-form">
 		<table border="0" >
 			<tr><td>Item Count</td><td><input id="item-count" type="number" autofocus placeholder="int value" size="3"></td></tr>
-			<tr><td></td><td><input type="submit" value="Run Sample Process"></td></tr>
+			<tr><td></td><td><input type="submit" value="Run Scraper"></td></tr>
 		</table>
 	</form>
 	<script src="/UiPathRobot.js"></script>
