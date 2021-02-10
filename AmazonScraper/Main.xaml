@@ -3,7 +3,7 @@
     <x:Property Name="itemCount" Type="InArgument(x:Int32)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>861,3124</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>652,2376</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -81,7 +81,7 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="662,2084" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence sap:VirtualizedContainerService.HintSize="662,2211" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="https://www.amazon.com/s?rh=n%3A193870011&amp;fs=true&amp;ref=lp_193870011_sar" Name="url" />
     </Sequence.Variables>
@@ -90,7 +90,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="620,1992" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="620,2119" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="ExtractDataTable">
           <Variable.Default>
@@ -103,15 +103,20 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Firefox" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="578,1900" sap2010:WorkflowViewState.IdRef="OpenBrowser_1">
+      <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Firefox" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="578,2027" sap2010:WorkflowViewState.IdRef="OpenBrowser_1">
         <ui:OpenBrowser.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="544,1799" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="544,1926" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <Sequence.Variables>
                 <Variable x:TypeArguments="ui:Browser" Name="browser" />
+                <Variable x:TypeArguments="x:String" Name="outputFilePath">
+                  <Variable.Default>
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_31">Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "output.tsv")</mca:CSharpValue>
+                  </Variable.Default>
+                </Variable>
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -291,10 +296,17 @@
                 </ui:WriteCsvFile.DataTable>
                 <ui:WriteCsvFile.FilePath>
                   <InArgument x:TypeArguments="x:String">
-                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_30">Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "output.tsv")</mca:CSharpValue>
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_32">outputFilePath</mca:CSharpValue>
                   </InArgument>
                 </ui:WriteCsvFile.FilePath>
               </ui:WriteCsvFile>
+              <ui:StartProcess WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="C:\WINDOWS\system32\notepad.exe" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="StartProcess_1">
+                <ui:StartProcess.Arguments>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33">outputFilePath</mca:CSharpValue>
+                  </InArgument>
+                </ui:StartProcess.Arguments>
+              </ui:StartProcess>
             </Sequence>
           </ActivityAction>
         </ui:OpenBrowser.Body>
